@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ICAI Schedule III Financial Statement Generator</title>
+    <link rel="stylesheet" href="/static/styles.css?v=4" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="masthead">
+        <p class="eyebrow">Division I · Non-Ind AS</p>
+        <h1>ICAI Schedule III Financial Statement Generator</h1>
+        <p class="lede">
+          Upload a trial balance Excel workbook or a financial statement PDF to
+          generate Schedule III financial statements in the ICAI sample format.
+        </p>
+      </header>
+
+      <section class="panel" aria-labelledby="upload-heading">
+        <h2 id="upload-heading">Upload Trial Balance or Financial Statement</h2>
+        <label class="dropzone" id="dropzone" for="file-input">
+          <input id="file-input" type="file" accept=".xlsx,.xlsm,.pdf" />
+          <span class="dropzone-title">Choose a trial balance (.xlsx) or PDF</span>
+          <span class="dropzone-hint">Excel trial balance (.xlsx) or financial statement PDF · max 25 MB · drag-and-drop works</span>
+        </label>
+        <p class="filename" id="filename" hidden>
+          Selected file: <strong id="filename-value"></strong>
+          <button type="button" class="text-button" id="clear-file">Clear</button>
+        </p>
+        <button type="button" class="primary" id="generate" disabled>Generate Excel</button>
+      </section>
+
+      <section class="panel" id="progress-panel" hidden aria-labelledby="progress-heading" aria-live="polite">
+        <h2 id="progress-heading">Processing progress</h2>
+        <ol class="steps" id="steps">
+          <li data-stage="uploaded">Uploading</li>
+          <li data-stage="extracting">Reading source file</li>
+          <li data-stage="classifying">Identifying financial statements</li>
+          <li data-stage="mapping">Mapping to Schedule III</li>
+          <li data-stage="review">Review mappings</li>
+          <li data-stage="generating">Generating Excel</li>
+          <li data-stage="validating">Validating workbook</li>
+        </ol>
+      </section>
+
+      <section class="panel review" id="review-panel" hidden>
+        <h2>Human review</h2>
+        <p class="review-copy">
+          Approve mappings before Excel is generated. Values below the confidence
+          threshold require a decision and are never written automatically.
+        </p>
+        <div class="year-fields">
+          <label>
+            Current financial year
+            <input id="year-current" type="text" autocomplete="off" />
+          </label>
+          <label>
+            Previous financial year
+            <input id="year-previous" type="text" autocomplete="off" />
+          </label>
+        </div>
+        <p class="review-meta" id="review-meta"></p>
+        <div class="table-wrap">
+          <table class="review-table" id="review-table">
+            <thead>
+              <tr>
+                <th>Source Field</th>
+                <th>Extracted Value</th>
+                <th>Source Page</th>
+                <th>Schedule III Category</th>
+                <th>Excel Destination</th>
+                <th>Confidence</th>
+                <th>Status</th>
+                <th>Period</th>
+                <th>Note number</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="review-body"></tbody>
+          </table>
+        </div>
+        <div class="review-actions">
+          <button type="button" class="secondary" id="approve-all">✓ Approve all</button>
+          <button type="button" class="secondary" id="approve-eligible">Approve eligible</button>
+          <button type="button" class="primary" id="approve-generate">Approve and generate Excel</button>
+        </div>
+      </section>
+
+      <section class="panel result" id="result-panel" hidden>
+        <div class="validation" id="validation-block">
+          <h2>Validation summary</h2>
+          <p class="badge" id="validation-badge" data-status="">—</p>
+        </div>
+        <a class="primary download" id="download" hidden href="#">Download Excel</a>
+      </section>
+
+      <section class="panel issues" id="issues-panel" hidden aria-labelledby="issues-heading">
+        <h2 id="issues-heading">Errors and warnings</h2>
+        <div id="issues-list"></div>
+      </section>
+    </main>
+    <script src="/static/app.js?v=4"></script>
+  </body>
+</html>

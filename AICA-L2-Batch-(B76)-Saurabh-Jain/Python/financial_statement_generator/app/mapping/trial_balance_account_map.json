@@ -1,0 +1,204 @@
+{
+  "version": 2,
+  "group_labels": [
+    "capital account",
+    "loans (liability)",
+    "current liabilities",
+    "fixed assets",
+    "current assets",
+    "sales accounts",
+    "indirect incomes",
+    "indirect expenses",
+    "total"
+  ],
+  "accounts": [
+    {
+      "patterns": ["share capital"],
+      "schedule_iii_label": "Share capital",
+      "statement_head": "Share capital",
+      "statement": "balance_sheet",
+      "nature": "equity",
+      "aggregate_key": "share_capital"
+    },
+    {
+      "patterns": ["reserve and surplus", "reserves and surplus"],
+      "schedule_iii_label": "Reserves and surplus",
+      "statement_head": "Reserves and surplus",
+      "statement": "balance_sheet",
+      "nature": "equity",
+      "aggregate_key": "reserves_and_surplus"
+    },
+    {
+      "patterns": ["ankit loan"],
+      "schedule_iii_label": "Long-term borrowings",
+      "statement_head": "Long-term borrowings",
+      "statement": "balance_sheet",
+      "nature": "liability",
+      "aggregate_key": "long_term_borrowings"
+    },
+    {
+      "patterns": ["cash credit", "short term borrowing", "overdraft", "term loan"],
+      "schedule_iii_label": "Short-term borrowings",
+      "statement_head": "Short-term borrowings",
+      "statement": "balance_sheet",
+      "nature": "liability",
+      "aggregate_key": "short_term_borrowings"
+    },
+    {
+      "patterns": ["duties & taxes", "duties and taxes", "gst payable", "tds payable"],
+      "schedule_iii_label": "Other current liabilities",
+      "statement_head": "Duties & Taxes",
+      "statement": "balance_sheet",
+      "nature": "liability",
+      "aggregate_key": "duties_and_taxes"
+    },
+    {
+      "patterns": ["sundry creditors", "trade payables", "creditors"],
+      "schedule_iii_label": "Trade payables",
+      "statement_head": "Trade payables",
+      "statement": "balance_sheet",
+      "nature": "liability",
+      "aggregate_key": "trade_payables"
+    },
+    {
+      "patterns": ["audit fee payable"],
+      "schedule_iii_label": "Other current liabilities",
+      "statement_head": "Other current liabilities",
+      "statement": "balance_sheet",
+      "nature": "liability",
+      "aggregate_key": "other_current_liabilities"
+    },
+    {
+      "patterns": ["provision for incometax", "provision for income tax"],
+      "schedule_iii_label": "Short-term provisions",
+      "statement_head": "Short-term provisions",
+      "statement": "balance_sheet",
+      "nature": "liability",
+      "aggregate_key": "short_term_provisions"
+    },
+    {
+      "patterns": ["sundry debtors", "trade receivables", "debtors"],
+      "schedule_iii_label": "Trade receivables",
+      "statement_head": "Trade receivables",
+      "statement": "balance_sheet",
+      "nature": "asset",
+      "aggregate_key": "trade_receivables"
+    },
+    {
+      "patterns": ["cash-in-hand", "cash in hand", "bank accounts", "bank account"],
+      "schedule_iii_label": "Cash and cash equivalents",
+      "statement_head": "Cash and cash equivalents",
+      "statement": "balance_sheet",
+      "nature": "asset",
+      "aggregate_key": "cash_and_cash_equivalents"
+    },
+    {
+      "patterns": ["advance to vendor", "advance to vendors"],
+      "schedule_iii_label": "Short-term loans and advances",
+      "statement_head": "Short-term loans and advances",
+      "statement": "balance_sheet",
+      "nature": "asset",
+      "aggregate_key": "short_term_loans_and_advances"
+    },
+    {
+      "patterns": ["deferred tax asset"],
+      "schedule_iii_label": "Other current assets",
+      "statement_head": "Deferred tax asset",
+      "statement": "balance_sheet",
+      "nature": "asset",
+      "aggregate_key": "deferred_tax_asset"
+    },
+    {
+      "patterns": ["tds recivables", "tds receivables"],
+      "schedule_iii_label": "Other current assets",
+      "statement_head": "TDS receivables",
+      "statement": "balance_sheet",
+      "nature": "asset",
+      "aggregate_key": "other_current_assets"
+    },
+    {
+      "patterns": ["trademark", "software", "patent"],
+      "schedule_iii_label": "Intangible assets",
+      "statement_head": "Intangible assets",
+      "statement": "balance_sheet",
+      "nature": "asset",
+      "aggregate_key": "intangible_assets"
+    },
+    {
+      "patterns": [
+        "plant", "machinery", "furniture", "computer", "vehicle", "building", "inverter",
+        "refrigerator", "phone", "assets a/c", "fixed asset", "ac 2", "samsung"
+      ],
+      "schedule_iii_label": "Property, Plant and Equipment",
+      "statement_head": "Property, Plant and Equipment",
+      "statement": "balance_sheet",
+      "nature": "asset",
+      "aggregate_key": "property_plant_and_equipment"
+    },
+    {
+      "patterns": ["sale of service", "sales", "revenue from operations", "turnover"],
+      "schedule_iii_label": "Revenue from operations",
+      "statement_head": "Revenue from operations",
+      "statement": "profit_and_loss",
+      "nature": "income",
+      "aggregate_key": "revenue_from_operations"
+    },
+    {
+      "patterns": ["deferred tax income"],
+      "schedule_iii_label": "Deferred tax",
+      "statement_head": "Deferred tax income",
+      "statement": "profit_and_loss",
+      "nature": "income",
+      "aggregate_key": "deferred_tax_income"
+    },
+    {
+      "patterns": ["interest on income tax refund", "other income"],
+      "schedule_iii_label": "Other income",
+      "statement_head": "Other income",
+      "statement": "profit_and_loss",
+      "nature": "income",
+      "aggregate_key": "other_income"
+    },
+    {
+      "patterns": ["depreciation"],
+      "schedule_iii_label": "Depreciation and amortization expense",
+      "statement_head": "Depreciation",
+      "statement": "profit_and_loss",
+      "nature": "expense",
+      "aggregate_key": "depreciation_and_amortization_expense"
+    },
+    {
+      "patterns": ["salary", "employee benefit"],
+      "schedule_iii_label": "Employee benefits expense",
+      "statement_head": "Employee benefits expense",
+      "statement": "profit_and_loss",
+      "nature": "expense",
+      "aggregate_key": "employee_benefits_expense"
+    },
+    {
+      "patterns": ["income tax expense"],
+      "schedule_iii_label": "Current tax",
+      "statement_head": "Current tax",
+      "statement": "profit_and_loss",
+      "nature": "expense",
+      "aggregate_key": "current_tax"
+    },
+    {
+      "patterns": ["prior period expense"],
+      "schedule_iii_label": "Prior period items",
+      "statement_head": "Prior period items",
+      "statement": "profit_and_loss",
+      "nature": "expense",
+      "aggregate_key": "prior_period_items",
+      "allow_credit_on_asset": true
+    },
+    {
+      "patterns": ["audit fee", "professional charges", "bank charges", "fees and taxes", "round off", "interest on tds"],
+      "schedule_iii_label": "Other expenses",
+      "statement_head": "Other expenses",
+      "statement": "profit_and_loss",
+      "nature": "expense",
+      "aggregate_key": "other_expenses"
+    }
+  ]
+}

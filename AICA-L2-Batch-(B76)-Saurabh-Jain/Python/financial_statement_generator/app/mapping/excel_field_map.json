@@ -1,0 +1,540 @@
+{
+  "version": 1,
+  "description": "Configurable mapping from extracted source labels to ICAI Division I Schedule III categories and Excel destinations. Cell coordinates are optional fallbacks; the engine prefers template labels, headers, and defined names.",
+  "template_company_name": "ABC INDIA LIMITED",
+  "template_company_aliases": [
+    "ABC INDIA LIMITED",
+    "ABC India Limited",
+    "ABC Private Limited",
+    "ABC & Company"
+  ],
+  "template_sample_phrases": [
+    "For ABC & Company"
+  ],
+  "sheet_aliases": {
+    "BS PnL": ["BS PnL", "BS P&L", "Balance Sheet", "Statement of Profit and Loss"],
+    "Cash Flow": ["Cash Flow", "Cash Flow ", "Cash Flow Statement", "Cashflow"],
+    "Note 1-2": ["Note 1-2", "Note 1", "Note 2"],
+    "Note 3 (Share Capital)": ["Note 3 (Share Capital)", "Note 3", "Share Capital"],
+    "NOTE (4-12)": ["NOTE (4-12)", "Note 4-12", "Notes 4-12"],
+    "Note 12 (PPE)": ["Note 12 (PPE)", "Note 12", "PPE"],
+    "13.CWIP": ["13.CWIP", "CWIP", "Capital work-in-progress"],
+    "Note (13-20)": ["Note (13-20)", "Notes 13-20"],
+    "Note 20-31": ["Note 20-31", "Notes 20-31"],
+    "EBP": ["EBP"],
+    "Ratio_working": ["Ratio_working", "Ratios", "Analytical Ratios"],
+    "Other Notes": ["Other Notes", "Other disclosures"],
+    "Stock Reconciliation": ["Stock Reconciliation", "Stock Reconciliation ", "Inventory"],
+    "Borrowing": ["Borrowing", "Borrowings"],
+    "EPS": ["EPS", "Earnings per share"]
+  },
+  "sheets": {
+    "BS PnL": {
+      "label_columns": ["A", "B"],
+      "columns": {
+        "note": ["C"],
+        "current": ["F", "E"],
+        "previous": ["G", "H", "D"]
+      },
+      "header_keywords": {
+        "note": ["note", "note no", "note no."],
+        "current": ["current", "as at", "year ended", "31 march", "figures as at"],
+        "previous": ["previous", "prior", "comparative"]
+      }
+    },
+    "Cash Flow": {
+      "label_columns": ["A", "B"],
+      "columns": {
+        "current": ["D", "C", "F"],
+        "previous": ["E", "G"]
+      },
+      "header_keywords": {
+        "current": ["current", "as at", "year ended", "31 march", "figures as at"],
+        "previous": ["previous", "prior", "comparative"]
+      }
+    },
+    "Note 3 (Share Capital)": {
+      "label_columns": ["A", "B"],
+      "columns": {
+        "current": ["H", "F"],
+        "previous": ["L", "J"]
+      }
+    },
+    "NOTE (4-12)": {
+      "label_columns": ["A", "B"],
+      "columns": {"current": ["E"], "previous": ["F"]}
+    },
+    "Note (13-20)": {
+      "label_columns": ["A", "B"],
+      "columns": {"current": ["F"], "previous": ["G"]}
+    },
+    "Note 20-31": {
+      "label_columns": ["A", "B"],
+      "columns": {"current": ["C"], "previous": ["D"]}
+    },
+    "Note 12 (PPE)": {
+      "label_columns": ["A", "B"],
+      "columns": {"current": ["F", "C"], "previous": ["G", "D"]}
+    },
+    "13.CWIP": {
+      "label_columns": ["A", "B"],
+      "columns": {"current": ["F", "C"], "previous": ["G", "D"]}
+    },
+    "Borrowing": {
+      "label_columns": ["A", "B"],
+      "columns": {"current": ["F", "C"], "previous": ["G", "D"]}
+    },
+    "EPS": {
+      "label_columns": ["A", "B"],
+      "columns": {"current": ["C", "F"], "previous": ["D", "G"]}
+    },
+    "Ratio_working": {
+      "label_columns": ["A", "B"],
+      "columns": {"current": ["C", "F"], "previous": ["D", "G"]}
+    }
+  },
+  "synonyms": {
+    "share capital": [
+      "equity share capital",
+      "paid up capital",
+      "paid-up share capital",
+      "issued share capital",
+      "subscribed share capital"
+    ],
+    "reserves and surplus": ["reserves & surplus", "reserves", "surplus"],
+    "long-term borrowings": ["long term borrowings", "non-current borrowings", "term loans"],
+    "short-term borrowings": ["short term borrowings", "current borrowings"],
+    "property, plant and equipment": ["ppe", "property plant and equipment", "tangible assets"],
+    "capital work-in-progress": ["cwip", "capital work in progress"],
+    "inventories": ["inventory", "closing stock", "stock-in-trade"],
+    "trade receivables": ["sundry debtors", "debtors"],
+    "trade payables": ["sundry creditors", "creditors"],
+    "cash and cash equivalents": ["cash & bank", "cash and bank balances", "cash and bank"],
+    "revenue from operations": ["turnover", "sales", "revenue"],
+    "employee benefits expense": ["employee benefit expenses", "staff costs", "employee cost"],
+    "finance costs": ["finance cost", "interest expense", "interest cost"],
+    "depreciation and amortization expense": [
+      "depreciation and amortisation expense",
+      "depreciation"
+    ],
+    "earnings per equity share": ["earnings per share", "eps"],
+    "current tax": ["provision for tax", "income tax"],
+    "deferred tax": ["deferred tax expense", "deferred tax charge"]
+  },
+  "fields": {
+    "company_name": {
+      "schedule_iii_section": "Company information",
+      "schedule_iii_label": "Name of the Company",
+      "statement": "company_information",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["company name", "name of the company"],
+      "label_match": ["Name of the Company", "Company Name"],
+      "target_cells": {"current": "A2"},
+      "value_role": "text",
+      "overwrite_formula": true
+    },
+    "cin": {
+      "schedule_iii_section": "Company information",
+      "schedule_iii_label": "Corporate Identity Number",
+      "statement": "company_information",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["cin", "corporate identity number"],
+      "label_match": ["CIN", "Corporate Identity Number"],
+      "value_role": "text",
+      "overwrite_formula": false
+    },
+    "share_capital": {
+      "schedule_iii_section": "Shareholders' funds",
+      "schedule_iii_label": "Share capital",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "target_cells": ["F13", "G13"],
+      "note_sheet": "Note 3 (Share Capital)",
+      "source_labels": ["Share capital", "Share Capital", "Equity share capital"],
+      "label_match": ["Share capital", "Share Capital"],
+      "overwrite_formula": false
+    },
+    "reserves_and_surplus": {
+      "schedule_iii_section": "Shareholders' funds",
+      "schedule_iii_label": "Reserves and surplus",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "note_sheet": "NOTE (4-12)",
+      "source_labels": ["Reserves and surplus"],
+      "label_match": ["Reserves and surplus"],
+      "overwrite_formula": false
+    },
+    "money_received_against_share_warrants": {
+      "schedule_iii_section": "Shareholders' funds",
+      "schedule_iii_label": "Money received against share warrants",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Money received against share warrants"],
+      "label_match": ["Money received against share warrants"],
+      "overwrite_formula": false
+    },
+    "share_application_money_pending_allotment": {
+      "schedule_iii_section": "Share application money pending allotment",
+      "schedule_iii_label": "Share application money pending allotment",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Share application money pending allotment"],
+      "label_match": ["Share application money pending allotment"],
+      "overwrite_formula": false
+    },
+    "long_term_borrowings": {
+      "schedule_iii_section": "Non-current liabilities",
+      "schedule_iii_label": "Long-term borrowings",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "note_sheet": "Borrowing",
+      "source_labels": ["Long-term borrowings", "Long term borrowings"],
+      "label_match": ["Long-term borrowings"],
+      "overwrite_formula": false
+    },
+    "deferred_tax_liabilities_net": {
+      "schedule_iii_section": "Non-current liabilities",
+      "schedule_iii_label": "Deferred tax liabilities (Net)",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Deferred tax liabilities (Net)", "Deferred tax liabilities"],
+      "label_match": ["Deferred tax liabilities"],
+      "overwrite_formula": false
+    },
+    "other_long_term_liabilities": {
+      "schedule_iii_section": "Non-current liabilities",
+      "schedule_iii_label": "Other Long term liabilities",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Other Long term liabilities", "Other long-term liabilities"],
+      "label_match": ["Other Long term liabilities"],
+      "overwrite_formula": false
+    },
+    "long_term_provisions": {
+      "schedule_iii_section": "Non-current liabilities",
+      "schedule_iii_label": "Long-term provisions",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Long-term provisions"],
+      "label_match": ["Long-term provisions"],
+      "overwrite_formula": false
+    },
+    "short_term_borrowings": {
+      "schedule_iii_section": "Current liabilities",
+      "schedule_iii_label": "Short-term borrowings",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "note_sheet": "Borrowing",
+      "source_labels": ["Short-term borrowings"],
+      "label_match": ["Short-term borrowings"],
+      "overwrite_formula": false
+    },
+    "trade_payables": {
+      "schedule_iii_section": "Current liabilities",
+      "schedule_iii_label": "Trade payables",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "note_sheet": "Note (13-20)",
+      "source_labels": ["Trade payables"],
+      "label_match": ["Trade payables"],
+      "overwrite_formula": false
+    },
+    "other_current_liabilities": {
+      "schedule_iii_section": "Current liabilities",
+      "schedule_iii_label": "Other current liabilities",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Other current liabilities"],
+      "label_match": ["Other current liabilities"],
+      "overwrite_formula": false
+    },
+    "short_term_provisions": {
+      "schedule_iii_section": "Current liabilities",
+      "schedule_iii_label": "Short-term provisions",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Short-term provisions"],
+      "label_match": ["Short-term provisions"],
+      "overwrite_formula": false
+    },
+    "property_plant_and_equipment": {
+      "schedule_iii_section": "Non Current Assets",
+      "schedule_iii_label": "Property, Plant and Equipment",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "note_sheet": "Note 12 (PPE)",
+      "source_labels": ["Property, Plant and Equipment"],
+      "label_match": ["Property, Plant and Equipment"],
+      "overwrite_formula": false
+    },
+    "intangible_assets": {
+      "schedule_iii_section": "Non Current Assets",
+      "schedule_iii_label": "Intangible assets",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "note_sheet": "Note 12 (PPE)",
+      "source_labels": ["Intangible assets"],
+      "label_match": ["Intangible assets"],
+      "overwrite_formula": false
+    },
+    "capital_work_in_progress": {
+      "schedule_iii_section": "Non Current Assets",
+      "schedule_iii_label": "Capital work-in-progress",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "note_sheet": "13.CWIP",
+      "source_labels": ["Capital work-in-progress", "Capital work in progress"],
+      "label_match": ["Capital work-in-progress", "Capital work in progress"],
+      "overwrite_formula": false
+    },
+    "non_current_investments": {
+      "schedule_iii_section": "Non Current Assets",
+      "schedule_iii_label": "Non-current investments",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "note_sheet": "Note (13-20)",
+      "source_labels": ["Non-current investments"],
+      "label_match": ["Non-current investments"],
+      "overwrite_formula": false
+    },
+    "inventories": {
+      "schedule_iii_section": "Current assets",
+      "schedule_iii_label": "Inventories",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "note_sheet": "Stock Reconciliation",
+      "source_labels": ["Inventories"],
+      "label_match": ["Inventories"],
+      "overwrite_formula": false
+    },
+    "trade_receivables": {
+      "schedule_iii_section": "Current assets",
+      "schedule_iii_label": "Trade receivables",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "note_sheet": "Note (13-20)",
+      "source_labels": ["Trade receivables"],
+      "label_match": ["Trade receivables"],
+      "overwrite_formula": false
+    },
+    "cash_and_cash_equivalents": {
+      "schedule_iii_section": "Current assets",
+      "schedule_iii_label": "Cash and cash equivalents",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Cash and cash equivalents"],
+      "label_match": ["Cash and cash equivalents"],
+      "overwrite_formula": false
+    },
+    "short_term_loans_and_advances": {
+      "schedule_iii_section": "Current assets",
+      "schedule_iii_label": "Short-term loans and advances",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Short-term loans and advances"],
+      "label_match": ["Short-term loans and advances"],
+      "overwrite_formula": false
+    },
+    "other_current_assets": {
+      "schedule_iii_section": "Current assets",
+      "schedule_iii_label": "Other current assets",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Other current assets"],
+      "label_match": ["Other current assets"],
+      "overwrite_formula": false
+    },
+    "revenue_from_operations": {
+      "schedule_iii_section": "Statement of Profit and Loss",
+      "schedule_iii_label": "Revenue from operations",
+      "statement": "profit_and_loss",
+      "excel_sheet": "BS PnL",
+      "note_sheet": "Note 20-31",
+      "source_labels": ["Revenue from operations"],
+      "label_match": ["Revenue from operations"],
+      "overwrite_formula": false
+    },
+    "other_income": {
+      "schedule_iii_section": "Statement of Profit and Loss",
+      "schedule_iii_label": "Other income",
+      "statement": "profit_and_loss",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Other income"],
+      "label_match": ["Other income"],
+      "overwrite_formula": false
+    },
+    "cost_of_materials_consumed": {
+      "schedule_iii_section": "Expenses",
+      "schedule_iii_label": "Cost of materials consumed",
+      "statement": "profit_and_loss",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Cost of materials consumed"],
+      "label_match": ["Cost of materials consumed"],
+      "overwrite_formula": false
+    },
+    "purchases_of_stock_in_trade": {
+      "schedule_iii_section": "Expenses",
+      "schedule_iii_label": "Purchases of Stock-in-Trade",
+      "statement": "profit_and_loss",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Purchases of Stock-in-Trade"],
+      "label_match": ["Purchases of Stock-in-Trade"],
+      "overwrite_formula": false
+    },
+    "employee_benefits_expense": {
+      "schedule_iii_section": "Expenses",
+      "schedule_iii_label": "Employee benefits expense",
+      "statement": "profit_and_loss",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Employee benefits expense"],
+      "label_match": ["Employee benefits expense"],
+      "overwrite_formula": false
+    },
+    "finance_costs": {
+      "schedule_iii_section": "Expenses",
+      "schedule_iii_label": "Finance costs",
+      "statement": "profit_and_loss",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Finance costs"],
+      "label_match": ["Finance costs"],
+      "overwrite_formula": false
+    },
+    "depreciation_and_amortization_expense": {
+      "schedule_iii_section": "Expenses",
+      "schedule_iii_label": "Depreciation and amortization expense",
+      "statement": "profit_and_loss",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Depreciation and amortization expense"],
+      "label_match": ["Depreciation and amortization expense"],
+      "overwrite_formula": false
+    },
+    "other_expenses": {
+      "schedule_iii_section": "Expenses",
+      "schedule_iii_label": "Other expenses",
+      "statement": "profit_and_loss",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Other expenses"],
+      "label_match": ["Other expenses"],
+      "overwrite_formula": false
+    },
+    "tax_expense": {
+      "schedule_iii_section": "Tax expense",
+      "schedule_iii_label": "Tax expense",
+      "statement": "profit_and_loss",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Tax expense"],
+      "label_match": ["Tax expense"],
+      "overwrite_formula": false
+    },
+    "current_tax": {
+      "schedule_iii_section": "Tax expense",
+      "schedule_iii_label": "Current tax",
+      "statement": "profit_and_loss",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Current tax"],
+      "label_match": ["Current tax"],
+      "overwrite_formula": false
+    },
+    "deferred_tax": {
+      "schedule_iii_section": "Tax expense",
+      "schedule_iii_label": "Deferred tax",
+      "statement": "profit_and_loss",
+      "excel_sheet": "BS PnL",
+      "source_labels": ["Deferred tax"],
+      "label_match": ["Deferred tax"],
+      "overwrite_formula": false
+    },
+    "earnings_per_equity_share": {
+      "schedule_iii_section": "Earnings per share",
+      "schedule_iii_label": "Earnings per equity share",
+      "statement": "profit_and_loss",
+      "excel_sheet": "EPS",
+      "source_labels": ["Earnings per equity share", "Earnings per share"],
+      "label_match": ["Earnings per equity share"],
+      "overwrite_formula": false
+    },
+    "basic_eps": {
+      "schedule_iii_section": "Earnings per share",
+      "schedule_iii_label": "Basic",
+      "statement": "profit_and_loss",
+      "excel_sheet": "EPS",
+      "source_labels": ["Basic", "Basic EPS"],
+      "label_match": ["Basic"],
+      "overwrite_formula": false
+    },
+    "diluted_eps": {
+      "schedule_iii_section": "Earnings per share",
+      "schedule_iii_label": "Diluted",
+      "statement": "profit_and_loss",
+      "excel_sheet": "EPS",
+      "source_labels": ["Diluted", "Diluted EPS"],
+      "label_match": ["Diluted"],
+      "overwrite_formula": false
+    },
+    "authorised_share_capital": {
+      "schedule_iii_section": "Share capital",
+      "schedule_iii_label": "Authorised",
+      "statement": "notes_to_accounts",
+      "excel_sheet": "Note 3 (Share Capital)",
+      "source_labels": ["Authorised", "Authorized"],
+      "label_match": ["Authorised", "Authorized"],
+      "overwrite_formula": false
+    },
+    "cash_flow_from_operating_activities": {
+      "schedule_iii_section": "Cash Flow Statement",
+      "schedule_iii_label": "Cash flow from operating activities",
+      "statement": "cash_flow",
+      "excel_sheet": "Cash Flow",
+      "source_labels": ["Cash flow from operating activities"],
+      "label_match": ["Cash flow from operating activities"],
+      "overwrite_formula": false
+    },
+    "cash_flow_from_investing_activities": {
+      "schedule_iii_section": "Cash Flow Statement",
+      "schedule_iii_label": "Cash flow from investing activities",
+      "statement": "cash_flow",
+      "excel_sheet": "Cash Flow",
+      "source_labels": ["Cash flow from investing activities"],
+      "label_match": ["Cash flow from investing activities"],
+      "overwrite_formula": false
+    },
+    "cash_flow_from_financing_activities": {
+      "schedule_iii_section": "Cash Flow Statement",
+      "schedule_iii_label": "Cash flow from financing activities",
+      "statement": "cash_flow",
+      "excel_sheet": "Cash Flow",
+      "source_labels": ["Cash flow from financing activities"],
+      "label_match": ["Cash flow from financing activities"],
+      "overwrite_formula": false
+    },
+    "current_ratio": {
+      "schedule_iii_section": "Ratios",
+      "schedule_iii_label": "Current Ratio",
+      "statement": "ratios",
+      "excel_sheet": "Ratio_working",
+      "source_labels": ["Current Ratio"],
+      "label_match": ["Current Ratio"],
+      "overwrite_formula": false
+    },
+    "shareholders_funds_total": {
+      "kind": "derived_total",
+      "schedule_iii_section": "Shareholders' funds",
+      "schedule_iii_label": "Shareholders' funds",
+      "statement": "balance_sheet",
+      "excel_sheet": "BS PnL",
+      "label_match": ["Shareholders' funds", "Shareholders’ funds"],
+      "addends": ["share_capital", "reserves_and_surplus", "money_received_against_share_warrants"],
+      "overwrite_formula": false
+    },
+    "total_income": {
+      "kind": "derived_total",
+      "schedule_iii_section": "Statement of Profit and Loss",
+      "schedule_iii_label": "Total Income",
+      "statement": "profit_and_loss",
+      "excel_sheet": "BS PnL",
+      "label_match": ["Total Income", "Total Income (I + II)"],
+      "addends": ["revenue_from_operations", "other_income"],
+      "overwrite_formula": false
+    }
+  }
+}
